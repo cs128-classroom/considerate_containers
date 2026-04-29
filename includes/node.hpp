@@ -1,0 +1,14 @@
+#ifndef NODE_HPP
+#define NODE_HPP
+
+template <typename T>
+struct Node {
+  T data;
+  Node<T>* next = nullptr;
+  Node<T>* prev = nullptr;
+  Node(T data): data(data) {}
+  Node(T data, Node<T>* next, Node<T>* prev):
+      data(data), next(next), prev(prev) {}
+};
+
+#endif
