@@ -35,4 +35,29 @@ private:
   size_t size_ = 0;
 };
 
+template <typename T>
+Container<T>::Container() = default;
+
+template <typename T>
+Container<T>::Container(const Container& other) {
+  for (Node<T>* current = other.head_; current != nullptr; current = current->next) {
+    AddTail(current->data);
+  }
+}
+
+template <typename T>
+Container<T>& Container<T>::operator=(const Container& other) {
+  if (this == &other) { return *this; }
+  while (head_ != nullptr) { RemoveHead(); }
+  for (Node<T>* current = other.head_; current != nullptr; current = current->next) { AddTail(current->data); }
+  return *this;
+}
+
+template <typename T>
+Container<T>::~Container() {
+  while (head_ != nullptr) {
+    RemoveHead();
+  }
+}
+
 #endif  // CONTAINER_HPP
